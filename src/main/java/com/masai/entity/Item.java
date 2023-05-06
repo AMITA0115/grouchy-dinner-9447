@@ -1,5 +1,8 @@
 package com.masai.entity;
 
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,7 +24,7 @@ public class Item {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user; 
 
     private String name;
 
@@ -34,14 +38,20 @@ public class Item {
     private int soldStatus;
 
     private String category;
+    
+    @OneToMany(mappedBy="item", cascade = CascadeType.ALL)
+    private Set<Transaction> transactionSet;
 
 	public Item() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+
 	public Item(int item_id, User user, String name, double price, int quantity, String description, int soldStatus,
-			String category) {
+			String category, Set<Transaction> transactionSet) {
 		super();
 		this.item_id = item_id;
 		this.user = user;
@@ -51,9 +61,25 @@ public class Item {
 		this.description = description;
 		this.soldStatus = soldStatus;
 		this.category = category;
+		this.transactionSet = transactionSet;
 	}
 
-	
+
+
+
+	public Set<Transaction> getTransactionSet() {
+		return transactionSet;
+	}
+
+
+
+
+	public void setTransactionSet(Set<Transaction> transactionSet) {
+		this.transactionSet = transactionSet;
+	}
+
+
+
 
 	public int getItem_id() {
 		return item_id;

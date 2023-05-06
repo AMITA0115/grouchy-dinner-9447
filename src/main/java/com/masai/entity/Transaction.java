@@ -36,6 +36,8 @@ public class Transaction {
 
     @Column(name = "return_date")
     private LocalDate returnDate;
+    
+    
 
 	public Transaction() {
 		super();

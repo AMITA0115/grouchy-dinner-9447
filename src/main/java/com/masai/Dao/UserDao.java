@@ -11,40 +11,61 @@ import com.masai.exception.InvalidItemException;
 import com.masai.exception.UnauthorizedException;
 import com.masai.exception.InsufficientQuantityException;
 import com.masai.exception.InvalidTransactionException;
+import com.masai.exception.NoRecordFoundException;
 
 
 public interface UserDao {
+	    
+	     void loginUser(String username, String password) throws InvalidCredentialsException;
+	     
+	     void changePassword (String oldPassword, String newPassword) throws InvalidCredentialsException;
+	     
+	     void updateUser(User user, String firstName, String lastName, String address, String mobileNo) throws DuplicateUsernameException;
+	
+	     
+	     List<Object[]>getUserList() throws NoRecordFoundException,InvalidCredentialsException;
+		
+		List<Item> getAllItemsToBeSold() throws InsufficientQuantityException;
+		
+		List<Item> getSoldItems() ;
+		List<Item> getItemByCategory() throws  InvalidItemException;
+		List<Transaction> getAllTransactions() throws InvalidTransactionException;
+		List<Transaction> getAllTransactionByDate() throws InvalidTransactionException;
+		
     
-    // User registration
-    public User registerUser(String username, String firstName, String lastName, String address, String mobileNo, String password) throws DuplicateUsernameException;
-
-    // User login and logout
-    public User loginUser(String username, String password) throws InvalidCredentialsException;
-    public void logoutUser(User user);
+//    // User registration
+//    public User registerUser(String username, String firstName, String lastName, String address, String mobileNo, String password) throws DuplicateUsernameException;
+//
+//    // User login and logout
+//    public User loginUser(String username, String password) throws InvalidCredentialsException;
+//    
+//    
+//    // Update user details
+//    public User updateUser(User user, String firstName, String lastName, String address, String mobileNo) throws DuplicateUsernameException;
+//    public void changePassword(User user, String oldPassword, String newPassword) throws InvalidCredentialsException;
+//    
+//    // Add, update and delete products for sell
+//    public Item addItem(User user, String name, double price, int quantity, String description, String category) throws InvalidItemException;
+//    public Item updateItem(User user, int Item_id, String name, double price, int quantity, String description, String category) throws InvalidItemException, UnauthorizedException;
+//    public void deleteItem(User user, int Item_id) throws InvalidItemException, UnauthorizedException;
+//    
+//    // Get items available for sell
+//    public List<Item> getitemsForSale();
+//    public List<Item> getitemsByCategory(String category);
+//    
+//    // Purchase and return products
+//    public Transaction purchaseItem(User user, int transaction_id) throws InvalidItemException, InsufficientQuantityException;
+//    public Transaction returnItem(User user, int transactionId) throws InvalidTransactionException, UnauthorizedException;
+//    
+//    // Get transaction history
+//    public List<Transaction> getPurchaseHistory(User user);
+//    public List<Transaction> getSaleHistory(User user);
+//    public List<Transaction> getReturnHistory(User user);
+//    
+//    // Delete user account
+//    public void deleteUser(User user) throws UnauthorizedException;
     
-    // Update user details
-    public User updateUser(User user, String firstName, String lastName, String address, String mobileNo) throws DuplicateUsernameException;
-    public void changePassword(User user, String oldPassword, String newPassword) throws InvalidCredentialsException;
-    
-    // Add, update and delete products for sell
-    public Item addItem(User user, String name, double price, int quantity, String description, String category) throws InvalidItemException;
-    public Item updateItem(User user, int Item_id, String name, double price, int quantity, String description, String category) throws InvalidItemException, UnauthorizedException;
-    public void deleteItem(User user, int Item_id) throws InvalidItemException, UnauthorizedException;
-    
-    // Get items available for sell
-    public List<Item> getitemsForSale();
-    public List<Item> getitemsByCategory(String category);
-    
-    // Purchase and return products
-    public Transaction purchaseItem(User user, int transaction_id) throws InvalidItemException, InsufficientQuantityException;
-    public Transaction returnItem(User user, int transactionId) throws InvalidTransactionException, UnauthorizedException;
-    
-    // Get transaction history
-    public List<Transaction> getPurchaseHistory(User user);
-    public List<Transaction> getSaleHistory(User user);
-    public List<Transaction> getReturnHistory(User user);
-    
-    // Delete user account
-    public void deleteUser(User user) throws UnauthorizedException;
-    
+	
+  
+	
 }
