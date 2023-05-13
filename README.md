@@ -40,17 +40,7 @@ A user, who can be both a buyer and a seller, has the following capabilities:
 - View transaction history of returned items
 - Delete their account
 
-Please note that the system maintains relationships between transactions and users. Each transaction involves two users: the buyer and the seller. A user can have any number of transactions.
 
-For further information or assistance, please refer to the documentation or contact the system administrators.
-
-## Installation and Setup
-
-1. Clone the repository to your local machine.
-2. Install the necessary dependencies and libraries.
-3. Set up a database to store user information, items, and transactions.
-4. Configure the database connection in the system configuration file.
-5. Run the application and access it through a web browser.
 
 ## Contributors
 
